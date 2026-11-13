@@ -1,1 +1,4 @@
+Essa Pasta é destinada a segunda entrega da AEP de Engenharia de Software segundo semeste.
 
+ <h1>Algumas instruções de uso </h1>
+  Instruções de Compilação e Execução O programa utiliza exclusivamente bibliotecas nativas do padrão ANSI C, podendo ser compilado em qualquer ambiente Windows ou Linux sem instalação de pacotes externos. Para compilação via Terminal (GCC / MinGW), salve o código-fonte em um arquivo chamado main.c. Abra o terminal na mesma pasta e execute o comando gcc main.c -o sistema_pse. Para iniciar no Windows, digite sistema_pse.exe, e no Linux ou macOS, utilize ./sistema_pse. Para compilação via IDE (como Dev-C++ ou Code::Blocks), crie um novo arquivo fonte, cole o código, salve-o e pressione a tecla de atalho correspondente (F11 no Dev-C++ ou F9 no Code::Blocks) para compilar e rodar a aplicação.
