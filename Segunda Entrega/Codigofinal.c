@@ -489,7 +489,7 @@ void exportarPlanilha(Acao acoes[], int total, int cPlan, int cReal, int cCanc, 
 
 void gerarPDF(Acao acoes[], int total, int cPlan, int cReal, int cCanc, int sPrev, int sEfet, float percentual) {
     FILE *fp = fopen("resumo_acoes.pdf", "wb");
-    char conteudo[16384];
+    static char conteudo[16384];
     char linha[512];
     long offsets[6];
     long xrefPos;
@@ -505,27 +505,27 @@ void gerarPDF(Acao acoes[], int total, int cPlan, int cReal, int cCanc, int sPre
     strcat(conteudo, "/F1 11 Tf\n15 TL\n");
     strcat(conteudo, "(------------------------------------------------------------) Tj\nT*\n");
 
-    snprintf(linha, sizeof(linha), "(Planejadas: %d | Realizadas: %d | Canceladas: %d) Tj\nT*\n", cPlan, cReal, cCanc);
+    sprintf(linha, "(Planejadas: %d | Realizadas: %d | Canceladas: %d) Tj\nT*\n", cPlan, cReal, cCanc);
     strcat(conteudo, linha);
 
-    snprintf(linha, sizeof(linha), "(Participantes Previstos: %d) Tj\nT*\n", sPrev);
+    sprintf(linha, "(Participantes Previstos: %d) Tj\nT*\n", sPrev);
     strcat(conteudo, linha);
 
-    snprintf(linha, sizeof(linha), "(Participantes Efetivos: %d) Tj\nT*\n", sEfet);
+    sprintf(linha, "(Participantes Efetivos: %d) Tj\nT*\n", sEfet);
     strcat(conteudo, linha);
 
-    snprintf(linha, sizeof(linha), "(Percentual Alcancado: %.2f%%) Tj\nT*\n", percentual);
+    sprintf(linha, "(Percentual Alcancado: %.2f%%) Tj\nT*\n", percentual);
     strcat(conteudo, linha);
 
     strcat(conteudo, "(------------------------------------------------------------) Tj\nT*\nT*\n");
     strcat(conteudo, "(LISTA DE ACOES CADASTRADAS:) Tj\nT*\n");
 
     for (i = 0; i < total; i++) {
-        snprintf(linha, sizeof(linha),
-                 "([Cod: %d] Escola: %s | Tema: %s | Sit: %s | Prev: %d | Efet: %d) Tj\nT*\n",
-                 acoes[i].codigo, acoes[i].escola, acoes[i].tema,
-                 obterTextoSituacao(acoes[i].situacao),
-                 acoes[i].qtdPrevista, acoes[i].qtdEfetiva);
+        sprintf(linha,
+                "([Cod: %d] Escola: %s | Tema: %s | Sit: %s | Prev: %d | Efet: %d) Tj\nT*\n",
+                acoes[i].codigo, acoes[i].escola, acoes[i].tema,
+                obterTextoSituacao(acoes[i].situacao),
+                acoes[i].qtdPrevista, acoes[i].qtdEfetiva);
 
         if (strlen(conteudo) + strlen(linha) + 10 < sizeof(conteudo)) {
             strcat(conteudo, linha);
